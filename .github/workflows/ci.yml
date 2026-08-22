@@ -61,10 +61,6 @@ jobs:
       - name: Build and push Docker image
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/devops-lab:${{ github.sha }} .
-          docker push ghcr.io/${{ github.repository_owner }}/devops-lab:${{ github.sha }}
-
-    git add .github/workflows/ci.yml
-    git commit -m "Fix GHCR image name lowercase"
-    git push -u origin fix/ghcr-lowercase  
-    
+         docker build -t ghcr.io/ariyojo/devops-lab:${{ github.sha }} .
+         docker push ghcr.io/ariyojo/devops-lab:${{ github.sha }}
+          
