@@ -61,6 +61,10 @@ jobs:
       - name: Build and push Docker image
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-         docker build -t ghcr.io/ariyojo/devops-lab:${{ github.sha }} .
-         docker push ghcr.io/ariyojo/devops-lab:${{ github.sha }}
-          
+          docker build \
+            -t ghcr.io/ariyojo/devops-lab:${{ github.sha }} \
+            -t ghcr.io/ariyojo/devops-lab:latest \
+            .
+
+          docker push ghcr.io/ariyojo/devops-lab:${{ github.sha }}
+          docker push ghcr.io/ariyojo/devops-lab:latest
