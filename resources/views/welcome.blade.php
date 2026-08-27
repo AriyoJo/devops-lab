@@ -9,7 +9,7 @@
 
     <h1>DevOps Lab</h1>
 
-    <p>Laravel CI/CD Practice Application</p>
+    <p>Ini project devops pertama ariyo</p>
 
 </body>
 </html>
