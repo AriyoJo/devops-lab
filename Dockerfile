@@ -6,7 +6,8 @@ RUN apt-get update && apt-get install -y \
     git \
     unzip \
     libsqlite3-dev \
-    && docker-php-ext-install pdo pdo_sqlite \
+    libpq-dev \
+    && docker-php-ext-install pdo pdo_sqlite pdo_pgsql \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
@@ -16,9 +17,7 @@ COPY . .
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
 RUN cp .env.example .env \
-    && php artisan key:generate \
-    && touch database/database.sqlite \
-    && php artisan migrate --force
+    && php artisan key:generate
 
 EXPOSE 8000
 
